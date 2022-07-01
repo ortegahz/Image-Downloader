@@ -1,0 +1,39 @@
+# bug
+dcap = dict(DesiredCapabilities.PHANTOMJS) --> dcap = dict(DesiredCapabilities.CHROME)
+
+# run
+python image_downloader.py -e Baidu -d chrome_headless -n 100 -j 50 -o ./download_images/cat -S cat
+python image_downloader.py -e Google -ph 127.0.0.1:8118 -ps 127.0.0.1:1080 -d chrome_headless -n 100 -j 50 -o /home/manu/tmp/download_images/cat -S cat
+python image_downloader.py -e Bing -ph 127.0.0.1:8118 -ps 127.0.0.1:1080 -d chrome_headless -n 100 -j 50 -o /home/manu/tmp/download_images/cat -S cat
+
+# keys
+airport interior
+attic
+bar interior
+bathroom
+beach
+city
+church interior
+classroom interior
+empty city
+forest
+garage interior
+gym interior
+house outdoor
+interior
+kitchen
+lab interior
+landscape
+lecture hall
+mall interior
+night club interior
+office
+rainy woods
+rooftop
+stadium interior
+theater interior
+train station
+warehouse interior
+workplace interior
+
+airport interior,attic,bar interior,bathroom,beach,city,church interior,classroom interior,empty city,forest,garage interior,gym interior,house outdoor,interior,kitchen,lab interior,landscape,lecture hall,mall interior,night club interior,office,rainy woods,rooftop,stadium interior,theater interior,train station,warehouse interior,workplace interior

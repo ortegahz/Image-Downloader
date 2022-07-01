@@ -10,6 +10,7 @@ import imghdr
 import os
 import concurrent.futures
 import requests
+from PIL import Image
 
 headers = {
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
@@ -37,16 +38,33 @@ def download_image(image_url, dst_dir, file_name, timeout=20, proxy_type=None, p
             try_times += 1
             response = requests.get(
                 image_url, headers=headers, timeout=timeout, proxies=proxies)
+            print("## INFO:  {}  {}".format(len(response.content), image_url))
             with open(file_path, 'wb') as f:
                 f.write(response.content)
             response.close()
             file_type = imghdr.what(file_path)
             # if file_type is not None:
             if file_type in ["jpg", "jpeg", "png", "bmp"]:
-                new_file_name = "{}.{}".format(file_name, file_type)
-                new_file_path = os.path.join(dst_dir, new_file_name)
-                shutil.move(file_path, new_file_path)
-                print("## OK:  {}  {}".format(new_file_name, image_url))
+                # new_file_name = "{}.{}".format(file_name, file_type)
+                # new_file_path = os.path.join(dst_dir, new_file_name)
+                # shutil.move(file_path, new_file_path)
+                img = Image.open(file_path)
+                img.load()
+                if min(img.size) > 1000:
+                    new_file_name = "{}.{}".format(file_name, file_type)
+                    new_file_path = os.path.join(dst_dir, new_file_name)
+                    img.save(new_file_path)
+                    print("## OK:  {}  {}".format(new_file_name, image_url))
+                os.remove(file_path)
+            elif file_type == 'webp':
+                img = Image.open(file_path)
+                img.load()
+                if min(img.size) > 1000:
+                    new_file_name = "{}.{}".format(file_name, 'jpg')
+                    new_file_path = os.path.join(dst_dir, new_file_name)
+                    img.save(new_file_path)
+                    print("## OK:  {}  {}".format(new_file_name, image_url))
+                os.remove(file_path)
             else:
                 os.remove(file_path)
                 print("## Err:  {}".format(image_url))

@@ -363,7 +363,7 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.spinBox_max_number.setFont(font)
         self.spinBox_max_number.setMinimum(1)
-        self.spinBox_max_number.setMaximum(2000)
+        self.spinBox_max_number.setMaximum(10000)
         self.spinBox_max_number.setProperty("value", 100)
         self.spinBox_max_number.setObjectName("spinBox_max_number")
         self.horizontalLayout_4.addWidget(self.spinBox_max_number)

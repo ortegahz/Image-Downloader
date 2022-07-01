@@ -31,9 +31,9 @@ def main(argv):
                         help="Turn on safe search mode. (Only effective in Google)")
     parser.add_argument("--face-only", "-F", action="store_true", default=False,
                         help="Only search for ")
-    parser.add_argument("--proxy_http", "-ph", type=str, default=None,
+    parser.add_argument("--proxy_http", "-ph", type=str, default='127.0.0.1:8118',
                         help="Set http proxy (e.g. 192.168.0.2:8080)")
-    parser.add_argument("--proxy_socks5", "-ps", type=str, default=None,
+    parser.add_argument("--proxy_socks5", "-ps", type=str, default='127.0.0.1:1080',
                         help="Set socks5 proxy (e.g. 192.168.0.2:1080)")
     # type is not supported for Baidu
     parser.add_argument("--type", "-ty", type=str, default=None,
